@@ -1,3 +1,30 @@
+<?php
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "livreor";
+$sql = mysqli_connect($servername, $username, $password, $dbname);
+session_start();
+
+    if (isset($_POST['valider'])) {
+        $user = trim($_POST['username']);
+        $pass = trim($_POST['password']);
+        $query = "SELECT * FROM utilisateurs WHERE login = '$user' && password = '$pass'";
+        
+        if (mysqli_num_rows(mysqli_query($sql, $query)) > 0) {
+            $_SESSION['login'] = $user;
+            header("Location:profil.php");
+    
+        } else $wrong = "le login ou le mot de passe ou le username n'est pas correct";
+        
+    } elseif (isset($_SESSION['login'])) { // si deja connecter rederiction vers le profil.php
+        header("Location:connexion.php");
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,6 +56,8 @@
                 <form action="" method="post">
                     <h3 id="red">MAN<span id="yellow">AGE</span><span id="green">URO</span></h3>
                     <h4>Connexion</h4>
+                    <span id="error"><?php echo $wrong ?></span>
+                    <br>
                     <label for="username"></label>
                     <input type="text" name="username" id="username" placeholder="Username">
                     <br>
