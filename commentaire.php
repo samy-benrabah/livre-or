@@ -25,6 +25,12 @@
     </header>
 
     <main>
+        <?php
+        if (isset($_SESSION['login'])){
+            $connexion = mysqli_connect('localhost','root','','livreor');
+            $requete = mysqli_query($connexion, 'SELECT * FROM utilisateurs');
+            $login = $_SESSION['login']
+        ?>
         <section class="section1">
             <div>
                 <form action="" method="post">
@@ -39,6 +45,17 @@
                 </form>
             </div>
         </section>
+            <?php
+            if (isset($_POST['submit'])){
+                $commentaire = $_POST['text'];
+                $connexion = mysqli_connect('localhost','root','','livreor');
+                $requete = mysqli_query($connexion, "SELECT id FROM utilisateurs WHERE login = '$login'");
+            }
+
+            ?>
+        <?php
+        }else echo "Merci de vous connecter"
+        ?>
     </main>
     <footer>
         <p>Copyright © All right reserved</p>
