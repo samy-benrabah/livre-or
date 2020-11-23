@@ -9,26 +9,13 @@ $sql = mysqli_connect($servername, $username, $password, $dbname);
 
 if (isset($_SESSION['login'])) {
     $coucou = 'Coucou ' . $_SESSION['login'] . ' n\'hésite pas à laisser un commentaire';
-    $connecter = '
-                <a href="profil.php">Mon Profil</a>';
+    $connecter = '<a href="profil.php">Mon Profil</a>';
 }
 else $deconnecter = '<a href="inscription.php">Inscription</a>
                     <a href="connexion.php">Connexion</a>';
-
-
-
-
-
-
-
-
 ?>
 
-
-
 <!DOCTYPE html>
-
-
 <html lang="en">
 
 <head>
