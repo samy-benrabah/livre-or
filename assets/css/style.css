@@ -46,10 +46,6 @@ main .section1 p {
     word-spacing: 2px;
     letter-spacing: 1px;
     line-height: 30px;
-<<<<<<< HEAD
-=======
-    width: 550px;
->>>>>>> Commentaire
     color: #888888;
 }
 
@@ -111,14 +107,6 @@ form {
     align-items: center;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-.h3,
->>>>>>> profil.php
-=======
-.h3,
->>>>>>> Commentaire
 form h3 {
     font-size: 35px;
     text-shadow: 2px 1px 0px #000000;
@@ -149,8 +137,6 @@ form h4 {
     text-align: center;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 .error {
     display: flex;
     align-items: center;
@@ -164,10 +150,6 @@ form h4 {
     border-radius: 5px;
 }
 
-=======
->>>>>>> profil.php
-=======
->>>>>>> Commentaire
 form input {
     width: 280px;
     height: 40px;
@@ -213,21 +195,14 @@ form input[type="submit"]:focus {
 */
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 /* PARTIE PROFIL */
-=======
-=======
->>>>>>> Commentaire
+
+
 /* DEBUT PARTIE PROFIL */
 
 .maj {
     text-transform: uppercase;
 }
-<<<<<<< HEAD
->>>>>>> profil.php
-=======
->>>>>>> Commentaire
 
 .profil {
     background-color: #fefefe;
@@ -266,11 +241,6 @@ form input[type="submit"]:focus {
     box-shadow: none;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> Commentaire
 .change input {
     margin: 0;
 }
@@ -316,10 +286,6 @@ form input[type="submit"]:focus {
 
 /* FIN PARTIE LIVRE-OR */
 
-<<<<<<< HEAD
->>>>>>> profil.php
-=======
->>>>>>> Commentaire
 
 /* DEBUT FOOTER */
 

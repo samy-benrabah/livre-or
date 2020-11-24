@@ -32,6 +32,7 @@
 
                     <h3 id="red">MAN<span id="yellow">AGE</span><span id="green">URO</span></h3>
                     <h4>Inscription</h4>
+                    
                     <?php include 'errors.php';?>
                     <label for="login"></label>
                     <input type="text" name="login" id="login" placeholder="login">

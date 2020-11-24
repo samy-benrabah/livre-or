@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Manag€uro</title>
 </head>
 
@@ -36,31 +36,34 @@
                     <input type="submit" name="valider" value="Valider">
 
                     <?php
-                    $connexion = mysqli_connect('localhost','root','','livreor');
-                    $query = "SELECT id FROM utilisateurs";
-                    $requete = mysqli_query($connexion, $query);
-                    $allresult=mysqli_fetch_assoc($requete);
-                    $id = $allresult['id'];
-                    $date = date('Y-m-d H:i:s');
+$connexion = mysqli_connect('localhost', 'root', '', 'livreor');
+$query = "SELECT id FROM utilisateurs";
+$requete = mysqli_query($connexion, $query);
+$allresult = mysqli_fetch_assoc($requete);
+$id = $allresult['id'];
+$date = date('Y-m-d H:i:s');
 
-                    if (empty($_POST['valider'])){
-                    echo "compléter votre commentaire et cliquez sur valider";
-                    }
+if (empty($_POST['valider'])) {
+    echo "compléter votre commentaire et cliquez sur valider";
+}
 
-                    if (isset($_POST['valider'])){
-                        if(!empty(trim($_POST['text']))){
-                            var_dump($_POST['text']);
-                            $commentaire = $_POST['text'];
-                            var_dump($commentaire);
-                            $query1 = "INSERT INTO `commentaires`( commentaire, id_utilisateur, date) VALUES ('$commentaire', '$id', '$date')";
-                            $requete1 = mysqli_query($connexion, $query1);
-                            var_dump($connexion);
-                            var_dump($requete1);
-                            echo "Merci votre commentaire à bien été ajouté";
-                        } else echo "Merci de compléter le champ commentaires";
-                    }
+if (isset($_POST['valider'])) {
+    if (!empty(trim($_POST['text']))) {
+        var_dump($_POST['text']);
+        $commentaire = $_POST['text'];
+        var_dump($commentaire);
+        $query1 = "INSERT INTO `commentaires`( commentaire, id_utilisateur, date) VALUES ('$commentaire', '$id', '$date')";
+        $requete1 = mysqli_query($connexion, $query1);
+        var_dump($connexion);
+        var_dump($requete1);
+        echo "Merci votre commentaire à bien été ajouté";
+    } else {
+        echo "Merci de compléter le champ commentaires";
+    }
 
-                    ?>
+}
+
+?>
                 </form>
             </div>
         </section>

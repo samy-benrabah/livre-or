@@ -5,6 +5,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "livreor";
+$wrong = "";
 $sql = mysqli_connect($servername, $username, $password, $dbname);
 
 // si une saission deja ouverte renvoi vers la page profil
@@ -12,18 +13,20 @@ if (isset($_SESSION['login'])) {
     header("Location: profil.php");
 }
 
-    if (isset($_POST['valider'])) {
-        $user = trim($_POST['username']);
-        $pass = trim($_POST['password']);
-        $query = "SELECT * FROM utilisateurs WHERE login = '$user' && password = '$pass'";
-        
-        if (mysqli_num_rows(mysqli_query($sql, $query)) > 0) {
-            $_SESSION['login'] = $user;
-            header("Location:profil.php");
-    
-        } else $wrong = "le login ou le mot de passe ou le username n'est pas correct";
-        
-    } 
+if (isset($_POST['valider'])) {
+    $user = trim($_POST['username']);
+    $pass = trim($_POST['password']);
+    $query = "SELECT * FROM utilisateurs WHERE login = '$user' && password = '$pass'";
+
+    if (mysqli_num_rows(mysqli_query($sql, $query)) > 0) {
+        $_SESSION['login'] = $user;
+        header("Location:profil.php");
+
+    } else {
+        $wrong = "le login ou le mot de passe ou le username n'est pas correct";
+    }
+
+}
 
 ?>
 
