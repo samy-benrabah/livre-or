@@ -46,6 +46,10 @@ main .section1 p {
     word-spacing: 2px;
     letter-spacing: 1px;
     line-height: 30px;
+<<<<<<< HEAD
+=======
+    width: 550px;
+>>>>>>> livre-or
     color: #888888;
 }
 
