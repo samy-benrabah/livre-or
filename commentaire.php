@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Manag€uro</title>
 </head>
 
@@ -58,7 +58,7 @@
                             var_dump($requete1);
                             echo "Merci votre commentaire à bien été ajouté";
                         } else echo "Merci de compléter le champ commentaires";
-                    } else echo "commentaire non ajouté";
+                    }
 
                     ?>
                 </form>
