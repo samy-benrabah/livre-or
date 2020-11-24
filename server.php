@@ -30,6 +30,7 @@ if (isset($_POST['valider'])) {
         $cryptedpass = password_hash($password, PASSWORD_BCRYPT);
         $sql = "INSERT INTO utilisateurs (login, password) VALUES ('$login','$cryptedpass')";
         mysqli_query($db, $sql);
+        header('Refresh:3;connexion.php');
 
         var_dump($sqldoublon);
     }
