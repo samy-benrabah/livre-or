@@ -46,7 +46,6 @@ main .section1 p {
     word-spacing: 2px;
     letter-spacing: 1px;
     line-height: 30px;
-    width: 550px;
     color: #888888;
 }
 
@@ -136,6 +135,19 @@ form h4 {
     font-size: 12px;
     color: tomato;
     text-align: center;
+}
+
+.error {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 15em;
+    margin: 0px auto;
+    padding: 10px;
+    border: 1px solid #a94442;
+    color: #a94442;
+    background: #f2dede;
+    border-radius: 5px;
 }
 
 form input {

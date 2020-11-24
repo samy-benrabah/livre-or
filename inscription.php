@@ -1,11 +1,6 @@
-<?php
-// Faire ma connexion avec la base de donnée
-$db = mysqli_connect('localhost', 'root', '', 'utilisateurs')
-//  Connexion si les valeurs entrée sont les memes que dans la base de donnée
-
-?>
+<?php include 'server.php';?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -33,16 +28,19 @@ $db = mysqli_connect('localhost', 'root', '', 'utilisateurs')
         <section class="section1">
             <div>
                 <form action="" method="post">
+                <!-- Afficher message erreurs de validation -->
+
                     <h3 id="red">MAN<span id="yellow">AGE</span><span id="green">URO</span></h3>
                     <h4>Inscription</h4>
-                    <label for="username"></label>
-                    <input type="text" name="username" id="username" placeholder="Username">
+                    <?php include 'errors.php';?>
+                    <label for="login"></label>
+                    <input type="text" name="login" id="login" placeholder="login">
                     <br>
                     <label for="password"></label>
                     <input type="password" name="password" id="password" placeholder="Mot de passe">
                     <br>
-                    <label for="confirm_passe"></label>
-                    <input type="password" name="confirm_passe" id="confirm_passe" placeholder="Confirmer le mot de passe">
+                    <label for="confirm_pass"></label>
+                    <input type="password" name="confirm_pass" id="confirm_pass" placeholder="Confirmer le mot de passe">
                     <br>
                     <input type="submit" name="valider" value="Valider">
                 </form>
