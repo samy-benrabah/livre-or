@@ -4,8 +4,10 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "livreor";
+$login = $_SESSION['login'];
 $sql = mysqli_connect($servername, $username, $password, $dbname);
 $query = mysqli_query($sql, 'SELECT commentaire, date FROM `commentaires` ORDER BY date DESC');
+var_dump($query_login);
 $all_result = mysqli_fetch_all($query);
 $coucou = "";
 
@@ -53,7 +55,9 @@ else $deconnecter = '<a href="inscription.php">Inscription</a>
                     while(isset($all_result[$i][$j])){
                         echo $all_result[$i][$j] . "<br>" .  "<br>" ;
                         $j++;
-                    }echo "</div>";
+                    }
+                    echo $login;
+                    echo "</div>";
                 }
                 ?>
 

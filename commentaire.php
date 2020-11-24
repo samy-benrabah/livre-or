@@ -51,11 +51,8 @@
                         if(!empty(trim($_POST['text']))){
                             var_dump($_POST['text']);
                             $commentaire = $_POST['text'];
-                            var_dump($commentaire);
                             $query1 = "INSERT INTO `commentaires`( commentaire, id_utilisateur, date) VALUES ('$commentaire', '$id', '$date')";
                             $requete1 = mysqli_query($connexion, $query1);
-                            var_dump($connexion);
-                            var_dump($requete1);
                             echo "Merci votre commentaire à bien été ajouté";
                         } else echo "Merci de compléter le champ commentaires";
                     }
