@@ -1,11 +1,16 @@
 <?php
 
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "livreor";
 $sql = mysqli_connect($servername, $username, $password, $dbname);
-session_start();
+
+// si une saission deja ouverte renvoi vers la page profil
+if (isset($_SESSION['login'])) {
+    header("Location: profil.php");
+}
 
     if (isset($_POST['valider'])) {
         $user = trim($_POST['username']);
@@ -18,9 +23,7 @@ session_start();
     
         } else $wrong = "le login ou le mot de passe ou le username n'est pas correct";
         
-    } elseif (isset($_SESSION['login'])) { // si deja connecter rederiction vers le profil.php
-        header("Location:connexion.php");
-    }
+    } 
 
 ?>
 
@@ -46,7 +49,8 @@ session_start();
             <a href="index.php">Accueil</a>
             <a href="inscription.php">Inscription</a>
             <a href="connexion.php"><u><b>Connexion</b></u></a>
-            <a href="commentaire.php">Les avis</a>
+            <a href="livre-or.php">Livre d'or</a>
+            <a href="commentaire.php">Laissez un Commentaire</a>
         </nav>
     </header>
 
