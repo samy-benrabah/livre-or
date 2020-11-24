@@ -1,11 +1,29 @@
+<?php
 
+session_start();
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "livreor";
+$sql = mysqli_connect($servername, $username, $password, $dbname);
+
+    if (isset($_SESSION['login'])) {
+        $connecter = '
+                    <a href="profil.php">Mon Profil</a>';
+
+    }else $deconnecter = '<a href="inscription.php">Inscription</a>
+                        <a href="connexion.php">Connexion</a>';
+    if (!isset($_SESSION['login'])) {
+        header("Location: connexion.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Manag€uro</title>
 </head>
 
@@ -18,9 +36,12 @@
         </div>
         <nav>
             <a href="index.php">Accueil</a>
-            <a href="inscription.php">Inscription</a>
-            <a href="connexion.php"><u><b>Connexion</b></u></a>
-            <a href="commentaire.php">Les Commentaires</a>
+            <?php 
+                echo $deconnecter;
+                echo $connecter;
+            ?>
+            <a href="livre-or.php">Livre d'or</a>
+            <a href="commentaire.php"><u><b>Laissez un Commentaire</b></u></a>
         </nav>
     </header>
     <main>
@@ -49,13 +70,9 @@
 
                     if (isset($_POST['valider'])){
                         if(!empty(trim($_POST['text']))){
-                            var_dump($_POST['text']);
                             $commentaire = $_POST['text'];
-                            var_dump($commentaire);
                             $query1 = "INSERT INTO `commentaires`( commentaire, id_utilisateur, date) VALUES ('$commentaire', '$id', '$date')";
                             $requete1 = mysqli_query($connexion, $query1);
-                            var_dump($connexion);
-                            var_dump($requete1);
                             echo "Merci votre commentaire à bien été ajouté";
                         } else echo "Merci de compléter le champ commentaires";
                     }

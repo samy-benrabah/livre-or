@@ -37,7 +37,12 @@ else $deconnecter = '<a href="inscription.php">Inscription</a>
         </div>
         <nav>
             <a href="index.php">Accueil</a>
-            <a href="commentaire.php"><u><b>Les Commentaires</b></u></a>
+            <?php 
+                echo $deconnecter;
+                echo $connecter;
+            ?>
+            <a href="livre-or.php"><u><b>Livre d'or</b></u></a>
+            <a href="commentaire.php">Laissez un Commentaire</a>
         </nav>
     </header>
     <main>

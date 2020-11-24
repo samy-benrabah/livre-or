@@ -50,7 +50,6 @@ if (isset($_SESSION['login'])) {
             <a href="inscription.php">Inscription</a>
             <a href="connexion.php"><u><b>Connexion</b></u></a>
             <a href="livre-or.php">Livre d'or</a>
-            <a href="commentaire.php">Laissez un Commentaire</a>
         </nav>
     </header>
 
