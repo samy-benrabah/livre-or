@@ -1,25 +1,27 @@
 <?php
-    
-    session_start();
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "livreor";
-    $sql = mysqli_connect($servername, $username, $password, $dbname);
-    $login = $_SESSION['login'];
-    $req = mysqli_query($sql, "SELECT * FROM utilisateurs WHERE login='$login'");
-    $info = mysqli_fetch_assoc($req);
 
-
+session_start();
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "livreor";
+$sql = mysqli_connect($servername, $username, $password, $dbname);
+$login = $_SESSION['login'];
+$req = mysqli_query($sql, "SELECT * FROM utilisateurs WHERE login='$login'");
+$info = mysqli_fetch_assoc($req);
+$modifier = "";
+$change_user = "";
+$change_pass = "";
+$delete = "";
 
 // si aucune saission ouverte renvoi vers la page connexion
-    if (!isset($_SESSION['login'])) {
-        header("Location: connexion.php");
-    }
+if (!isset($_SESSION['login'])) {
+    header("Location: connexion.php");
+}
 
 // si on click sur le button modifier on s'affichera une section sur la droit pour modifier le profil
-    if (isset($_POST['modifier'])) {
-        $modifier = '
+if (isset($_POST['modifier'])) {
+    $modifier = '
         <div class="profil">
                 <div>
                     <h2>Modifier mes informations</h2>
@@ -37,11 +39,11 @@
                 </div>
             </div>
         ';
-    }
+}
 
 // si on click sur le button modifier username il s'affichera un input en bas pour modifier le username
-    if (isset($_POST['user'])) {
-        $change_user = '
+if (isset($_POST['user'])) {
+    $change_user = '
                         <div class="profil">
                             <div>
                                 <h2>Modifier mes informations</h2>
@@ -66,28 +68,31 @@
                                 </div>
                             </div>
                         </div>
-                        ';    
+                        ';
+}
+if (isset($_POST['chang_user'])) {
+    $new_user = $_POST['new_user'];
+    $sql_u = "SELECT login FROM utilisateurs WHERE login = '$new_user'";
+    $res_u = mysqli_query($sql, $sql_u);
+
+    if (!empty($new_user)) {
+        if ($new_user == $login) {
+            $same = " <span id=\"error\">Merci de saisir un autre username que $login</span>";
+        } elseif (mysqli_num_rows($res_u) == 0) {
+            $query = "UPDATE utilisateurs SET login='$new_user' WHERE login='$login'";
+            mysqli_query($sql, $query);
+            $_SESSION['login'] = $new_user;
+            $ok = "<span id=\"yellow\">Votre Username a bien été changé</span>";
+
+        } else {
+            $existe = "<span id=\"error\">Le username que vous avez saisi est déjà utilisé</span>";
+        }
+
+    } else {
+        $vide = "<span id=\"error\">Merci de remplir tous les champs !!</span>";
     }
-    if (isset($_POST['chang_user'])) {
-        $new_user = $_POST['new_user'];
-        $sql_u = "SELECT login FROM utilisateurs WHERE login = '$new_user'";
-        $res_u = mysqli_query($sql, $sql_u);
-        
-        if (!empty($new_user)) {
-            if ($new_user == $login) {
-                $same = " <span id=\"error\">Merci de saisir un autre username que $login</span>";
-            }
-            elseif (mysqli_num_rows($res_u) == 0) {
-                $query = "UPDATE utilisateurs SET login='$new_user' WHERE login='$login'";
-                mysqli_query($sql, $query);
-                $_SESSION['login'] = $new_user;
-                $ok = "<span id=\"yellow\">Votre Username a bien été changé</span>";
 
-            }else $existe = "<span id=\"error\">Le username que vous avez saisi est déjà utilisé</span>";
-
-        }else $vide = "<span id=\"error\">Merci de remplir tous les champs !!</span>";
-        
-        $change_user = '
+    $change_user = '
                         <div class="profil">
                             <div>
                                 <h2>Modifier mes informations</h2>
@@ -104,21 +109,21 @@
                                 </div>
                                 <div>
                                     <form action="profil.php" class="change">'
-                                        . $ok . $same . $existe . $vide . 
-                                        '<br>
+        . $ok . $same . $existe . $vide .
+        '<br>
                                         <input type="submit" name="exite" value="sortir">
                                     </form>
                                 </div>
                             </div>
                         </div>
                         ';
-                        
-    }
+
+}
 
 // si on click sur le button modifier mot de passe il s'affichera trois input en bas pour modifier le password
 if (isset($_POST['password'])) {
     $change_pass = '
-    
+
     <div class="profil">
         <div>
             <h2>Modifier mes informations</h2>
@@ -164,9 +169,17 @@ if (isset($_POST['chang_pass'])) {
                 mysqli_query($sql, $query);
                 $info['password'] = $new_pass;
                 $pass_ok = "<span id=\"yellow\">Le mot de passe a bien été changé</span>";
-            }else $sam_pass = "<span id=\"error\">La confirmation du mot de passe n'est pas correct</span>";
-        }else $wrong = "<span id=\"error\">Le mot de passe n'est pas correct</span>";
-    } else $vide = "<span id=\"error\">Merci de remplir tous les champs !!</span>";
+            } else {
+                $sam_pass = "<span id=\"error\">La confirmation du mot de passe n'est pas correct</span>";
+            }
+
+        } else {
+            $wrong = "<span id=\"error\">Le mot de passe n'est pas correct</span>";
+        }
+
+    } else {
+        $vide = "<span id=\"error\">Merci de remplir tous les champs !!</span>";
+    }
 
     $change_pass = '
                     <div class="profil">
@@ -185,8 +198,8 @@ if (isset($_POST['chang_pass'])) {
                             </div>
                             <div>
                                 <form action="profil.php" class="change">'
-                                    . $pass_ok . $sam_pass . $wrong . $vide . 
-                                    '<br>
+        . $pass_ok . $sam_pass . $wrong . $vide .
+        '<br>
                                     <input type="submit" name="pass_exite" value="sortir">
                                 </form>
                             </div>
@@ -194,7 +207,6 @@ if (isset($_POST['chang_pass'])) {
                     </div>
                     ';
 }
-
 
 // pour se deconnecter
 if (isset($_POST['logout'])) {
@@ -227,7 +239,7 @@ if (isset($_POST['yes'])) {
     mysqli_query($sql, "DELETE FROM utilisateurs WHERE login = '$login'");
     session_unset();
     $oui = '<span id="error" style="font-size:20px;">votre compte a bien été supprimer<br>c\'est triste de vous voir partir :(</span>';
-    header("Refresh:5"); 
+    header("Refresh:5");
 
     $delete = '
     <div class="profil">
@@ -243,13 +255,12 @@ if (isset($_POST['yes'])) {
                         <input type="submit" name="NO" value="NON">
                     </div>
                 </form>'
-                . $oui;
-            '</div>
+        . $oui;
+    '</div>
         </div>
     </div>
     ';
 }
-
 
 if (isset($_POST['comment'])) {
     header("Location: livre-or.php");

@@ -47,14 +47,16 @@ if (empty($_POST['valider'])) {
     echo "compléter votre commentaire et cliquez sur valider";
 }
 
-                    if (isset($_POST['valider'])){
-                        if(!empty(trim($_POST['text']))){
-                            $commentaire = $_POST['text'];
-                            $query1 = "INSERT INTO `commentaires`( commentaire, id_utilisateur, date) VALUES ('$commentaire', '$id', '$date')";
-                            $requete1 = mysqli_query($connexion, $query1);
-                            echo "Merci votre commentaire à bien été ajouté";
-                        } else echo "Merci de compléter le champ commentaires";
-                    }
+if (isset($_POST['valider'])) {
+    if (!empty(trim($_POST['text']))) {
+        $commentaire = $_POST['text'];
+        $query1 = "INSERT INTO `commentaires`( commentaire, id_utilisateur, date) VALUES ('$commentaire', '$id', '$date')";
+        $requete1 = mysqli_query($connexion, $query1);
+        header('refresh:3;url=livre-or.php');
+        echo "Merci votre commentaire à bien été ajouté";
+    } else {
+        echo "Merci de compléter le champ commentaires";
+    }
 
 }
 

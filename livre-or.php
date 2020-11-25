@@ -7,7 +7,6 @@ $dbname = "livreor";
 $login = $_SESSION['login'];
 $sql = mysqli_connect($servername, $username, $password, $dbname);
 $query = mysqli_query($sql, 'SELECT commentaire, date FROM `commentaires` ORDER BY date DESC');
-var_dump($query_login);
 $all_result = mysqli_fetch_all($query);
 $coucou = "";
 
@@ -15,9 +14,11 @@ if (isset($_SESSION['login'])) {
     $coucou = 'Coucou ' . $_SESSION['login'] . ' n\'hésite pas à laisser un commentaire';
     $connecter = '
                 <a href="profil.php">Mon Profil</a>';
-}
-else $deconnecter = '<a href="inscription.php">Inscription</a>
+} else {
+    $deconnecter = '<a href="inscription.php">Inscription</a>
                     <a href="connexion.php">Connexion</a>';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -49,17 +50,17 @@ else $deconnecter = '<a href="inscription.php">Inscription</a>
 
 
                 <?php
-                for($i=0;isset($all_result[$i]);$i++){
-                    $j=0;
-                    echo "<div class='comment'>";
-                    while(isset($all_result[$i][$j])){
-                        echo $all_result[$i][$j] . "<br>" .  "<br>" ;
-                        $j++;
-                    }
-                    echo $login;
-                    echo "</div>";
-                }
-                ?>
+for ($i = 0;isset($all_result[$i]); $i++) {
+    $j = 0;
+    echo "<div class='comment'>";
+    while (isset($all_result[$i][$j])) {
+        echo $all_result[$i][$j] . "<br>" . "<br>";
+        $j++;
+    }
+    echo $login;
+    echo "</div>";
+}
+?>
 
         </section>
     </main>
