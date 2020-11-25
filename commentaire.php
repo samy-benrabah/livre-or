@@ -60,7 +60,7 @@ $query = "SELECT id, login FROM utilisateurs";
 $requete = mysqli_query($connexion, $query);
 $allresult = mysqli_fetch_assoc($requete);
 $id = $allresult['id'];
-$login = $allresult['login']
+$login = $allresult['login'];
 $date = date('Y-m-d H:i:s');
 
 if (empty($_POST['valider'])) {
