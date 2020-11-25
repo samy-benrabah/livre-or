@@ -3,6 +3,9 @@ session_start();
 $login = '';
 $password = '';
 $errors = array();
+$deconnecter = "";
+$connecter = "";
+$let_comment = "";
 
 // Connexion base de donnée
 $db = mysqli_connect('localhost', 'root', '', 'livreor');
@@ -10,12 +13,13 @@ $db = mysqli_connect('localhost', 'root', '', 'livreor');
 // si une session deja ouverte renvoi vers la page profil
 if (isset($_SESSION['login'])) {
     header("Location: profil.php");
-    $connecter =   '<a href="profil.php">Mon Profil</a>';
+    $connecter = '<a href="profil.php">Mon Profil</a>';
     $let_comment = '<a href="commentaire.php">Laissez un Commentaire</a>';
 
-}else
+} else {
     $deconnecter = '<a href="inscription.php">Inscription</a>
                     <a href="connexion.php">Connexion</a>';
+}
 
 // Si le subscriber click sur valider
 if (isset($_POST['valider'])) {
@@ -44,7 +48,7 @@ if (isset($_POST['valider'])) {
         mysqli_query($db, $sql);
         header('Refresh:3;connexion.php');
 
-        var_dump($sqldoublon);
+        ($sqldoublon);
     }
 
 }

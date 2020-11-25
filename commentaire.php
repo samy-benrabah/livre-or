@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 $servername = "localhost";
@@ -6,13 +6,17 @@ $username = "root";
 $password = "";
 $dbname = "livreor";
 $sql = mysqli_connect($servername, $username, $password, $dbname);
+$deconnecter = "";
+$connecter = "";
 
-    if (isset($_SESSION['login'])) {
-        $connecter = '
+if (isset($_SESSION['login'])) {
+    $connecter = '
                     <a href="profil.php">Mon Profil</a>';
 
-    }else $deconnecter = '<a href="inscription.php">Inscription</a>
+} else {
+    $deconnecter = '<a href="inscription.php">Inscription</a>
                         <a href="connexion.php">Connexion</a>';
+}
 
 ?>
 <!DOCTYPE html>
@@ -24,7 +28,7 @@ $sql = mysqli_connect($servername, $username, $password, $dbname);
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Manag€uro</title>
 </head>
- 
+
 <body>
     <header>
         <div>
@@ -34,10 +38,10 @@ $sql = mysqli_connect($servername, $username, $password, $dbname);
         </div>
         <nav>
             <a href="index.php">Accueil</a>
-            <?php 
-                echo $deconnecter;
-                echo $connecter;
-            ?>
+            <?php
+echo $deconnecter;
+echo $connecter;
+?>
             <a href="livre-or.php">Livre d'or</a>
             <a href="commentaire.php"><u><b>Laissez un Commentaire</b></u></a>
         </nav>
@@ -55,15 +59,14 @@ $sql = mysqli_connect($servername, $username, $password, $dbname);
                     <input type="submit" name="valider" value="Valider">
 
                     <?php
-session_start();
+
 $login = $_SESSION['login'];
 $connexion = mysqli_connect('localhost', 'root', '', 'livreor');
 $query = "SELECT id FROM utilisateurs WHERE login = '$login'";
 $requete = mysqli_query($connexion, $query);
 $allresult = mysqli_fetch_assoc($requete);
-var_dump($allresult);
+($allresult);
 $id = $allresult['id'];
-$login = $allresult['login'];
 $date = date('Y-m-d H:i:s');
 
 if (empty($_POST['valider'])) {

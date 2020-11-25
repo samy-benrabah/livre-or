@@ -1,5 +1,5 @@
 <?php
-session_start(); 
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -9,16 +9,18 @@ $sql = mysqli_connect($servername, $username, $password, $dbname);
 $query = mysqli_query($sql, 'SELECT commentaire, date, login FROM `commentaires` INNER JOIN utilisateurs ON utilisateurs.id = commentaires.id_utilisateur ORDER BY date DESC');
 $all_result = mysqli_fetch_all($query);
 $coucou = "";
-var_dump($all_result);
+$let_comment = "";
+$deconnecter = "";
 
 if (isset($_SESSION['login'])) {
     $coucou = 'Coucou ' . $_SESSION['login'] . ' n\'hésite pas à laisser un commentaire';
-    $connecter =   '<a href="profil.php">Mon Profil</a>';
+    $connecter = '<a href="profil.php">Mon Profil</a>';
     $let_comment = '<a href="commentaire.php">Laissez un Commentaire</a>';
 
-}else
+} else {
     $deconnecter = '<a href="inscription.php">Inscription</a>
                     <a href="connexion.php">Connexion</a>';
+}
 
 ?>
 
@@ -41,10 +43,10 @@ if (isset($_SESSION['login'])) {
         </div>
         <nav>
             <a href="index.php">Accueil</a>
-            <?php 
-                echo $deconnecter;
-                echo $connecter;
-            ?>
+            <?php
+echo $deconnecter;
+echo $connecter;
+?>
             <a href="livre-or.php"><u><b>Livre d'or</b></u></a>
             <?php echo $let_comment ?>
         </nav>

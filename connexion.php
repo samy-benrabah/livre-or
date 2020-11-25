@@ -1,5 +1,5 @@
 <?php
- 
+
 session_start();
 $servername = "localhost";
 $username = "root";
@@ -7,16 +7,20 @@ $password = "";
 $dbname = "livreor";
 $wrong = "";
 $sql = mysqli_connect($servername, $username, $password, $dbname);
+$connecter = "";
+$deconnecter = "";
+$let_comment = "";
 
 // si une session deja ouverte renvoi vers la page profil
 if (isset($_SESSION['login'])) {
     header("Location: profil.php");
-    $connecter =   '<a href="profil.php">Mon Profil</a>';
+    $connecter = '<a href="profil.php">Mon Profil</a>';
     $let_comment = '<a href="commentaire.php">Laissez un Commentaire</a>';
 
-}else
+} else {
     $deconnecter = '<a href="inscription.php">Inscription</a>
                     <a href="connexion.php">Connexion</a>';
+}
 
 if (isset($_POST['valider'])) {
     $user = trim($_POST['username']);
@@ -27,7 +31,7 @@ if (isset($_POST['valider'])) {
         $_SESSION['login'] = $user;
         $row = mysqli_fetch_assoc($query);
         header("Location:profil.php");
-        var_dump($row);
+        ($row);
         if (password_verify($pass, $row['password'])) {
             header('Location:profil.php');
         }

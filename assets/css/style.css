@@ -284,6 +284,19 @@ form input[type="submit"]:focus {
 /* FIN PARTIE LIVRE-OR */
 
 
+/* DEBUT PARTIE COMMENTAIRE */
+
+textarea {
+    outline: none;
+    padding: 20px;
+    width: 600px;
+    resize: none;
+}
+
+
+/* FIN PARTIE COMMENTAIRE */
+
+
 /* DEBUT FOOTER */
 
 footer {
