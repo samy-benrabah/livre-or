@@ -23,10 +23,9 @@ if (isset($_POST['valider'])) {
         $_SESSION['login'] = $user;
         $row = mysqli_fetch_assoc($query);
         header("Location:profil.php");
-
+        var_dump($row);
         if (password_verify($pass, $row['password'])) {
             header('Location:profil.php');
-            $msg = "Bienvenue";
         }
 
     } else {
