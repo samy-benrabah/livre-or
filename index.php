@@ -1,6 +1,25 @@
+<?php 
+
+session_start();
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "livreor";
+$sql = mysqli_connect($servername, $username, $password, $dbname);
+
+    if (isset($_SESSION['login'])) {
+        $connecter =   '<a href="profil.php">Mon Profil</a>';
+        $let_comment = '<a href="commentaire.php">Laissez un Commentaire</a>';
+
+    }else
+        $deconnecter = '<a href="inscription.php">Inscription</a>
+                        <a href="connexion.php">Connexion</a>';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,9 +36,12 @@
         </div>
         <nav>
             <a href="index.php"><u><b>Accueil</b></u></a>
-            <a href="inscription.php">Inscription</a>
-            <a href="connexion.php">Connexion</a>
-            <a href="commentaire.php">Les avis</a>
+            <?php 
+                echo $deconnecter;
+                echo $connecter;
+            ?>
+            <a href="livre-or.php">Livre d'or</a>
+            <?php echo $let_comment ?>
         </nav>
     </header>
 

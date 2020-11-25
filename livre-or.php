@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); 
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -13,12 +13,12 @@ var_dump($all_result);
 
 if (isset($_SESSION['login'])) {
     $coucou = 'Coucou ' . $_SESSION['login'] . ' n\'hésite pas à laisser un commentaire';
-    $connecter = '
-                <a href="profil.php">Mon Profil</a>';
-} else {
+    $connecter =   '<a href="profil.php">Mon Profil</a>';
+    $let_comment = '<a href="commentaire.php">Laissez un Commentaire</a>';
+
+}else
     $deconnecter = '<a href="inscription.php">Inscription</a>
                     <a href="connexion.php">Connexion</a>';
-}
 
 ?>
 
@@ -41,7 +41,12 @@ if (isset($_SESSION['login'])) {
         </div>
         <nav>
             <a href="index.php">Accueil</a>
-            <a href="commentaire.php"><u><b>Les Commentaires</b></u></a>
+            <?php 
+                echo $deconnecter;
+                echo $connecter;
+            ?>
+            <a href="livre-or.php"><u><b>Livre d'or</b></u></a>
+            <?php echo $let_comment ?>
         </nav>
     </header>
     <main>
