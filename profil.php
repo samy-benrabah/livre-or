@@ -1,5 +1,5 @@
 <?php
-
+ 
 session_start();
 $servername = "localhost";
 $username = "root";
@@ -301,7 +301,6 @@ if (isset($_POST['comment'])) {
                 </div>
                 <div class="infoperso">
                     <p>votre username est: <?php echo $_SESSION['login'] ?></p>
-                    <p>votre Mot de passe est: <?php echo $info['password'] ?></p>
                 </div>
                 <div>
                     <form action="" method="post" class="form_profil">

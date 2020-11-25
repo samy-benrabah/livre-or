@@ -1,7 +1,8 @@
 <?php include 'server.php';?>
+
 <!DOCTYPE html>
 <html lang="fr">
-
+ 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +21,8 @@
             <a href="index.php">Accueil</a>
             <a href="inscription.php"><u><b>Inscription</b></u></a>
             <a href="connexion.php">Connexion</a>
-            <a href="commentaire.php">Les avis</a>
+            <a href="livre-or.php">Livre d'or</a>
+            <?php echo $let_comment ?>
         </nav>
     </header>
 
