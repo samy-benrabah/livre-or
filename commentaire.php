@@ -36,12 +36,14 @@
                     <input type="submit" name="valider" value="Valider">
 
                     <?php
+session_start();
+$login = $_SESSION['login'];
 $connexion = mysqli_connect('localhost', 'root', '', 'livreor');
-$query = "SELECT id, login FROM utilisateurs";
+$query = "SELECT id FROM utilisateurs WHERE login = '$login'";
 $requete = mysqli_query($connexion, $query);
 $allresult = mysqli_fetch_assoc($requete);
+var_dump($allresult);
 $id = $allresult['id'];
-$login = $allresult['login']
 $date = date('Y-m-d H:i:s');
 
 if (empty($_POST['valider'])) {
@@ -51,7 +53,7 @@ if (empty($_POST['valider'])) {
 if (isset($_POST['valider'])) {
     if (!empty(trim($_POST['text']))) {
         $commentaire = $_POST['text'];
-        $query1 = "INSERT INTO `commentaires`( commentaire, id_utilisateur, login,  date) VALUES ('$commentaire', '$id', '$login', '$date')";
+        $query1 = "INSERT INTO commentaires ( commentaire, id_utilisateur,  date) VALUES ('$commentaire', '$id',  '$date')";
         $requete1 = mysqli_query($connexion, $query1);
         header('refresh:3;url=livre-or.php');
         echo "Merci votre commentaire à bien été ajouté";

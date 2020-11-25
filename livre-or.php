@@ -6,9 +6,10 @@ $password = "";
 $dbname = "livreor";
 $login = $_SESSION['login'];
 $sql = mysqli_connect($servername, $username, $password, $dbname);
-$query = mysqli_query($sql, 'SELECT commentaire, date, login FROM `commentaires` INNER JOIN utilisateurs ON commentaires.id_utilisateur = utilisateurs.id ORDER BY date DESC');
+$query = mysqli_query($sql, 'SELECT commentaire, date, login FROM `commentaires` INNER JOIN utilisateurs ON utilisateurs.id = commentaires.id_utilisateur ORDER BY date DESC');
 $all_result = mysqli_fetch_all($query);
 $coucou = "";
+var_dump($all_result);
 
 if (isset($_SESSION['login'])) {
     $coucou = 'Coucou ' . $_SESSION['login'] . ' n\'hésite pas à laisser un commentaire';
@@ -27,7 +28,7 @@ if (isset($_SESSION['login'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Manag€uro</title>
 </head>
 
