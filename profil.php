@@ -13,8 +13,12 @@ $modifier = "";
 $change_user = "";
 $change_pass = "";
 $delete = "";
+$pass_ok = "";
+$sam_pass = "";
+$wrong = "";
+$vide = "";
 
-// si aucune saission ouverte renvoi vers la page connexion
+// si aucune session ouverte renvoi vers la page connexion
 if (!isset($_SESSION['login'])) {
     header("Location: connexion.php");
 }
@@ -163,12 +167,20 @@ if (isset($_POST['chang_pass'])) {
     $confirm_pass = $_POST['confirm_pass'];
 
     if (!empty($old_pass) && !empty($new_pass) && !empty($confirm_pass)) {
-        if ($info['password'] == $_POST['old_pass']) {
+
+        if (password_verify($old_pass, $info['password']) == $old_pass) {
+
             if ($_POST['new_pass'] == $_POST['confirm_pass']) {
-                $query = "UPDATE utilisateurs SET password='$new_pass' WHERE login='$login'";
-                mysqli_query($sql, $query);
+
                 $info['password'] = $new_pass;
+                $cryptedpass = password_hash($new_pass, PASSWORD_BCRYPT);
+                $query = "UPDATE utilisateurs SET password='$cryptedpass' WHERE login='$login'";
+
+                mysqli_query($sql, $query);
+                header('location:profil.php');
+
                 $pass_ok = "<span id=\"yellow\">Le mot de passe a bien été changé</span>";
+
             } else {
                 $sam_pass = "<span id=\"error\">La confirmation du mot de passe n'est pas correct</span>";
             }
