@@ -6,7 +6,7 @@ $password = "";
 $dbname = "livreor";
 $login = $_SESSION['login'];
 $sql = mysqli_connect($servername, $username, $password, $dbname);
-$query = mysqli_query($sql, 'SELECT commentaire, date FROM `commentaires` ORDER BY date DESC');
+$query = mysqli_query($sql, 'SELECT commentaire, date, login FROM `commentaires` INNER JOIN utilisateurs ON commentaires.id_utilisateur = utilisateurs.id ORDER BY date DESC');
 $all_result = mysqli_fetch_all($query);
 $coucou = "";
 
@@ -27,7 +27,7 @@ if (isset($_SESSION['login'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Manag€uro</title>
 </head>
 
@@ -57,7 +57,6 @@ for ($i = 0;isset($all_result[$i]); $i++) {
         echo $all_result[$i][$j] . "<br>" . "<br>";
         $j++;
     }
-    echo $login;
     echo "</div>";
 }
 ?>
